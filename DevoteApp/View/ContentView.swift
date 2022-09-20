@@ -10,10 +10,15 @@ import CoreData
 
 struct ContentView: View {
     
-    // Environment wrapper helps in reading the values of managedObjectContext which is an environment property. This shared method is used for saving, deleting and some other tasks
+    @State var task: String = ""
+    @FocusState private var keyboardIsFocused: Bool
+    
+    private var isButtonDisabled: Bool {
+        task.isEmpty
+    }
+    
     @Environment(\.managedObjectContext) private var viewContext
 
-    // FetchRequest helps in loading core data that matches the specify criteria we select and swiftUI combines those results directly to user interface elements
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
@@ -23,6 +28,9 @@ struct ContentView: View {
         withAnimation {
             let newItem = Item(context: viewContext)
             newItem.timestamp = Date()
+            newItem.task = task
+            newItem.completion = false
+            newItem.id = UUID()
 
             do {
                 try viewContext.save()
@@ -48,27 +56,55 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
+            VStack {
+                VStack (spacing: 16) {
+                    TextField("New Task", text: $task)
+                        .focused($keyboardIsFocused)
+                        .padding()
+                        .background(
+                            Color(UIColor.systemGray6)
+                        )
+                        .cornerRadius(10)
+                    
+                    Button (action: {
+                        addItem()
+                        keyboardIsFocused = false
+                        task = ""
+                    }, label: {
+                        Spacer()
+                        Text("Save")
+                        Spacer()
+                    })
+                    .disabled(isButtonDisabled)
+                    .padding()
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .background(isButtonDisabled ? Color.gray : Color.pink)
+                    .cornerRadius(10)
                 }
-                .onDelete(perform: deleteItems)
+                .padding()
+                
+                List {
+                    ForEach(items) { item in
+                            VStack(alignment: .leading) {
+                                Text(item.task ?? "")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                
+                                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            }
+                    }
+                    .onDelete(perform: deleteItems)
+                }
             }
+            .navigationBarTitle("Daily Tasks", displayMode: .large)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
             }
-            Text("Select an item")
         }
     }
 }
