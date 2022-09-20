@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B282E93428D96A0A001399A7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93328D96A0A001399A7 /* Constant.swift */; };
 		B282E93828DA6759001399A7 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93728DA6759001399A7 /* BackgroundImageView.swift */; };
+		B282E93C28DA75EC001399A7 /* NewTaskItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93B28DA75EC001399A7 /* NewTaskItemView.swift */; };
+		B282E93E28DA7BE4001399A7 /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93D28DA7BE4001399A7 /* BlankView.swift */; };
 		B28B37E528D8AC37005686C0 /* DevoteAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28B37E428D8AC37005686C0 /* DevoteAppApp.swift */; };
 		B28B37E728D8AC37005686C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28B37E628D8AC37005686C0 /* ContentView.swift */; };
 		B28B37E928D8AC39005686C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B28B37E828D8AC39005686C0 /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		B282E93328D96A0A001399A7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B282E93728DA6759001399A7 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		B282E93B28DA75EC001399A7 /* NewTaskItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskItemView.swift; sourceTree = "<group>"; };
+		B282E93D28DA7BE4001399A7 /* BlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
 		B28B37E128D8AC37005686C0 /* DevoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B28B37E428D8AC37005686C0 /* DevoteAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevoteAppApp.swift; sourceTree = "<group>"; };
 		B28B37E628D8AC37005686C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 			children = (
 				B28B37E628D8AC37005686C0 /* ContentView.swift */,
 				B282E93728DA6759001399A7 /* BackgroundImageView.swift */,
+				B282E93B28DA75EC001399A7 /* NewTaskItemView.swift */,
+				B282E93D28DA7BE4001399A7 /* BlankView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,10 +217,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B282E93C28DA75EC001399A7 /* NewTaskItemView.swift in Sources */,
 				B282E93828DA6759001399A7 /* BackgroundImageView.swift in Sources */,
 				B28B37EE28D8AC39005686C0 /* Persistence.swift in Sources */,
 				B28B37E728D8AC37005686C0 /* ContentView.swift in Sources */,
 				B282E93428D96A0A001399A7 /* Constant.swift in Sources */,
+				B282E93E28DA7BE4001399A7 /* BlankView.swift in Sources */,
 				B28B37F128D8AC39005686C0 /* DevoteApp.xcdatamodeld in Sources */,
 				B28B37E528D8AC37005686C0 /* DevoteAppApp.swift in Sources */,
 			);
