@@ -11,40 +11,19 @@ import CoreData
 struct ContentView: View {
     
     @State var task: String = ""
-    @FocusState private var keyboardIsFocused: Bool
-    
-    private var isButtonDisabled: Bool {
-        task.isEmpty
-    }
+    @State private var showNewTaskItem: Bool = false
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-            newItem.task = task
-            newItem.completion = false
-            newItem.id = UUID()
-
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
+    
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { items[$0] }.forEach(viewContext.delete)
-
+            
             do {
                 try viewContext.save()
             } catch {
@@ -58,44 +37,37 @@ struct ContentView: View {
         NavigationView {
             ZStack {
                 VStack {
-                    VStack (spacing: 16) {
-                        TextField("New Task", text: $task)
-                            .focused($keyboardIsFocused)
-                            .padding()
-                            .background(
-                                Color(UIColor.systemGray6)
-                            )
-                            .cornerRadius(10)
+                    Spacer(minLength: 80)
+                    
+                    Button {
+                        showNewTaskItem = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .font(.system(size: 30, weight: .semibold, design: .rounded))
                         
-                        Button (action: {
-                            addItem()
-                            keyboardIsFocused = false
-                            task = ""
-                        }, label: {
-                            Spacer()
-                            Text("Save")
-                            Spacer()
-                        })
-                        .disabled(isButtonDisabled)
-                        .padding()
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .background(isButtonDisabled ? Color.gray : Color.pink)
-                        .cornerRadius(10)
+                        Text("New Task")
+                            .font(.system(size: 24, weight: .bold, design: .rounded))
                     }
-                    .padding()
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 15)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.pink, Color.blue]), startPoint: .leading, endPoint: .trailing)
+                            .clipShape(Capsule())
+                    )
+                    .shadow(color: Color(red: 0, green: 0, blue: 0, opacity: 0.25), radius: 8, x: 0, y: 4)
                     
                     List {
                         ForEach(items) { item in
-                                VStack(alignment: .leading) {
-                                    Text(item.task ?? "")
-                                        .font(.headline)
-                                        .fontWeight(.bold)
-                                    
-                                    Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                                        .font(.footnote)
-                                        .foregroundColor(.gray)
-                                }
+                            VStack(alignment: .leading) {
+                                Text(item.task ?? "")
+                                    .font(.headline)
+                                    .fontWeight(.bold)
+                                
+                                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                                    .font(.footnote)
+                                    .foregroundColor(.gray)
+                            }
                         }
                         .onDelete(perform: deleteItems)
                     }
@@ -105,23 +77,35 @@ struct ContentView: View {
                     .frame(maxWidth: 640)
                     .scrollContentBackground(.hidden)
                 }
+                
+                if showNewTaskItem{
+                    BlankView()
+                        .onTapGesture {
+                            withAnimation(){
+                                showNewTaskItem = false
+                            }
+                        }
+                    NewTaskItemView(isShowing: $showNewTaskItem)
+                }
+                
             }
             .onAppear(){
                 UITableView.appearance().backgroundColor = UIColor.clear
+                scrollContentBackground(.hidden)
             }
-                .navigationBarTitle("Daily Tasks", displayMode: .large)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-
+            .navigationBarTitle("Daily Tasks", displayMode: .large)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                    
+                }
             }
-            }
-                .background(
-                    BackgroundImageView()
-                )
-                .background(
-                    backgroundGradient.ignoresSafeArea(.all)
-                )
+            .background(
+                BackgroundImageView()
+            )
+            .background(
+                backgroundGradient.ignoresSafeArea(.all)
+            )
         }
         .navigationViewStyle(StackNavigationViewStyle()) // it ensure to diplay only a single column at a time
     }
