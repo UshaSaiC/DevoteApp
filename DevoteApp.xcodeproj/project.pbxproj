@@ -13,6 +13,7 @@
 		B282E93E28DA7BE4001399A7 /* BlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93D28DA7BE4001399A7 /* BlankView.swift */; };
 		B282E94028DA834E001399A7 /* ListRowItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E93F28DA834E001399A7 /* ListRowItemView.swift */; };
 		B282E94228DA85E9001399A7 /* CheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E94128DA85E9001399A7 /* CheckboxStyle.swift */; };
+		B282E94428DA8B15001399A7 /* SoundPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B282E94328DA8B15001399A7 /* SoundPlayer.swift */; };
 		B28B37E528D8AC37005686C0 /* DevoteAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28B37E428D8AC37005686C0 /* DevoteAppApp.swift */; };
 		B28B37E728D8AC37005686C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28B37E628D8AC37005686C0 /* ContentView.swift */; };
 		B28B37E928D8AC39005686C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B28B37E828D8AC39005686C0 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		B282E93D28DA7BE4001399A7 /* BlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankView.swift; sourceTree = "<group>"; };
 		B282E93F28DA834E001399A7 /* ListRowItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowItemView.swift; sourceTree = "<group>"; };
 		B282E94128DA85E9001399A7 /* CheckboxStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxStyle.swift; sourceTree = "<group>"; };
+		B282E94328DA8B15001399A7 /* SoundPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayer.swift; sourceTree = "<group>"; };
 		B28B37E128D8AC37005686C0 /* DevoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B28B37E428D8AC37005686C0 /* DevoteAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevoteAppApp.swift; sourceTree = "<group>"; };
 		B28B37E628D8AC37005686C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B282E93328D96A0A001399A7 /* Constant.swift */,
+				B282E94328DA8B15001399A7 /* SoundPlayer.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			files = (
 				B282E94028DA834E001399A7 /* ListRowItemView.swift in Sources */,
 				B282E93C28DA75EC001399A7 /* NewTaskItemView.swift in Sources */,
+				B282E94428DA8B15001399A7 /* SoundPlayer.swift in Sources */,
 				B282E93828DA6759001399A7 /* BackgroundImageView.swift in Sources */,
 				B28B37EE28D8AC39005686C0 /* Persistence.swift in Sources */,
 				B28B37E728D8AC37005686C0 /* ContentView.swift in Sources */,
