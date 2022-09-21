@@ -56,6 +56,7 @@ struct NewTaskItemView: View {
                 Button (action: {
                     addItem()
                     playSound(sound: "sound-ding", type: "mp3")
+                    feedback.notificationOccurred(.success)
                     keyboardIsFocused = false
                     task = ""
                 }, label: {
@@ -66,7 +67,7 @@ struct NewTaskItemView: View {
                 })
                 .disabled(isButtonDisabled)
                 .onTapGesture(perform: {
-                    id isButtonDisabled{
+                    if isButtonDisabled{
                         playSound(sound: "sound-tap", type: "mp3")
                     }
                 })
